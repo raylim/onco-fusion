@@ -202,7 +202,7 @@ def pretile_slide(row, tile_size, tile_dir, normalize=False, overlap=0):
 
 
 if __name__ == '__main__':
-    serial = True
+    serial = False
     df = general_utils.load_preprocessed_df(file_name=config.args.preprocessed_cohort_csv_path,
                                             min_n_tiles=1,
                                             explode=False)
@@ -210,7 +210,7 @@ if __name__ == '__main__':
     with open('../global_config.yaml', 'r') as f:
         DIRECTORIES = yaml.safe_load(f)
         DATA_DIR = DIRECTORIES['data_dir']
-    df['image_path'] = df['image_path'].apply(lambda x: os.path.join(DATA_DIR, x))
+    # df['image_path'] = df['image_path'].apply(lambda x: os.path.join(DATA_DIR, x))
     
     if serial:
         for _, row in df.iterrows():

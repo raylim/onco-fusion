@@ -204,7 +204,7 @@ if __name__ == '__main__':
     with open('../global_config.yaml', 'r') as f:
         DIRECTORIES = yaml.safe_load(f)
         DATA_DIR = DIRECTORIES['data_dir']
-    df['image_path'] = df['image_path'].apply(lambda x: os.path.join(DATA_DIR, x))
+    # df['image_path'] = df['image_path'].apply(lambda x: os.path.join(DATA_DIR, x))
     if 'segmentation_path' in df.columns:
         df['segmentation_path'] = df['segmentation_path'].apply(lambda x: os.path.join(DATA_DIR, x))
 

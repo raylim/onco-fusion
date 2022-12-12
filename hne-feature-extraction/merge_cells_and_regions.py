@@ -130,6 +130,6 @@ if not os.path.exists(VIZ_DIR):
 
 
 if __name__ == '__main__':
-    Parallel(n_jobs=64)(delayed(process_slide)(slide_id) for slide_id in slide_ids)
+    Parallel(n_jobs=32)(delayed(process_slide)(slide_id) for slide_id in slide_ids)
     #for slide_id in slide_ids:
     #    process_slide(slide_id)

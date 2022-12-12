@@ -265,8 +265,9 @@ if __name__ == "__main__":
         dremio_password=config['TOKEN'],
         connection_args={},
     )
-    query = 'SELECT merged_hne_inventory.spectrum_sample_id, merged_hne_inventory.slide_image FROM merged_hne_inventory'
+    query = 'SELECT merged_hne_inventory.spectrum_sample_id, merged_hne_inventory.slide_image FROM spectrum.merged_hne_inventory'
 
     df = dremio_session.get_table(query)
-    df['merged_hne_inventory.slide_image'] = df['merged_hne_inventory.slide_image'].str.removeprefix("file://")
-    df.to_csv(sys.stdout)
+    df['slide_image'] = df['slide_image'].str.replace("file://", '')
+    df.columns = ['Patient ID', 'image_path']
+    df.to_csv(sys.argv[1], index=False)
