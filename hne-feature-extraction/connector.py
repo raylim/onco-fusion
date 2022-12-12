@@ -12,6 +12,7 @@ import sys
 
 import pandas as pd
 from pyarrow import flight
+from dotenv import dotenv_values
 
 
 class TableLoader:
@@ -254,17 +255,14 @@ class DremioDataframeConnector:
 if __name__ == "__main__":
     import getpass
 
-    # set username and password
-    # (or Personal Access Token) when prompted at the command prompt
-    DREMIO_USER = input("Username: ")
-    DREMIO_PASSWORD = getpass.getpass(prompt="Password or PAT: ", stream=None)
+    config = dotenv_values(".env")
 
     dremio_session = DremioDataframeConnector(
         scheme="grpc+tcp",
         hostname="tlvidreamcord1",
         flightport=32010,
-        dremio_user=DREMIO_USER,
-        dremio_password=DREMIO_PASSWORD,
+        dremio_user=config['USER'],
+        dremio_password=config['TOKEN'],
         connection_args={},
     )
     query = 'SELECT merged_hne_inventory.spectrum_sample_id, merged_hne_inventory.slide_image FROM merged_hne_inventory'
