@@ -52,3 +52,8 @@ selectDetections();
 runObjectClassifier("/models/ANN_StardistSeg3.0CellExp1.0CellConstraint_AllFeatures_LymphClassifier.json")
 def filename = GeneralTools.getNameWithoutExtension(server.getMetadata().getName())
 saveDetectionMeasurements('/data/results/' + filename + '.tsv')
+
+def detection_geojson = GsonTools.getInstance(true)
+new File('/data/geojson/' + filename + '.geojson').withWriter('UTF-8') {
+    detection_geojson.toJson(celldetections, it)
+}
