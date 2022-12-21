@@ -54,6 +54,7 @@ def filename = GeneralTools.getNameWithoutExtension(server.getMetadata().getName
 saveDetectionMeasurements('/data/results/' + filename + '.tsv')
 
 def detection_geojson = GsonTools.getInstance(true)
+Files.createDirectories(Paths.get("/data/geojson"));
 new File('/data/geojson/' + filename + '.geojson').withWriter('UTF-8') {
     detection_geojson.toJson(celldetections, it)
 }
