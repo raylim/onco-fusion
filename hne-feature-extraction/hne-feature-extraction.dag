@@ -1,5 +1,7 @@
 JOB FIRST 1_infer_tissue_types_and_extract_features.sub
 JOB SECOND 2_extract_objects.sub
 JOB THIRD 3_label_objects_and_extract_features.sub
+JOB FORTH 4_dsa_annotate.sub
 PARENT FIRST CHILD SECOND
 PARENT SECOND CHILD THIRD
+PARENT THIRD CHILD FORTH

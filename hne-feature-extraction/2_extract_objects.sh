@@ -3,7 +3,7 @@ source /gpfs/mskmind_ess/limr/mambaforge/etc/profile.d/conda.sh
 conda activate transformer
 for entry in "qupath/data/slides"/*.svs; do
         temp=`basename ${entry}`
-        temp="${temp/.svs/.tsv}"
+        temp="${temp/.svs/.geojson}"
         temp="qupath/data/results/${temp}"
         echo ${temp}
         if test -f ${temp}; then
